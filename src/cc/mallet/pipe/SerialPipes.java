@@ -142,5 +142,20 @@ public class SerialPipes extends Pipe implements Serializable
 		pipes = (ArrayList) in.readObject();
 		resolveAlphabets();
 	}
+	
+	@Override
+	public void cleanPipeFromMemory(){
+		super.cleanPipeFromMemory();
+		for(Pipe pipe : pipes){
+			pipe.cleanPipeFromMemory();
+		}
+		pipes.clear();
+		if(dataAlphabet != null){
+			dataAlphabet.cleanAlphabetFromMemory();
+		}
+		if(targetAlphabet != null){
+			targetAlphabet.cleanAlphabetFromMemory();
+		}
+	}
 
 }

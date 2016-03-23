@@ -516,6 +516,18 @@ public class CRF extends Transducer implements Serializable
 			initialWeights = (double[]) in.readObject ();
 			finalWeights = (double[]) in.readObject ();
 		}
+		
+		public void cleanFactorsFromMemory(){
+			this.defaultWeights = null;
+			this.finalWeights = null;
+			this.initialWeights = null;
+			if(this.weightAlphabet != null){
+				this.weightAlphabet.cleanAlphabetFromMemory();
+			}
+			this.weightAlphabet = null;
+			this.weights = null;
+			this.weightsFrozen = null;
+		}
 	}
 	
 	public CRF (Pipe inputPipe, Pipe outputPipe)

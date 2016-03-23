@@ -394,4 +394,28 @@ public class Alphabet implements Serializable
 		//System.out.println(" *** Alphabet ReadResolve: new instance. instance id= " + instanceId);
 		return this;
 	}
+
+	public void cleanAlphabetFromMemory(){
+		if(instanceId != null){
+			Object obj = deserializedEntries.remove(this.instanceId);
+//			System.out.println(" *** Alphabet Removed from memory! instance id= " + instanceId);
+//			System.out.println("Alphabet entries in memory: " + String.valueOf(deserializedEntries.size()));
+			if(obj != null){
+				Alphabet alphabet = (Alphabet) obj;
+				alphabet.map.clear();
+				alphabet.entries.clear();
+				alphabet.map = null;
+				alphabet.entries = null;
+				alphabet.entryClass = null;
+				alphabet.instanceId = null;
+			}
+		}
+		System.gc();
+	}
+
+	public static void cleanAllAphabetsFromMemory(){
+//		System.out.println("Alphabet entries in memory before clear: " + String.valueOf(deserializedEntries.size()));
+		deserializedEntries.clear();
+//		System.out.println("Alphabet entries in memory after clear: " + String.valueOf(deserializedEntries.size()));
+	}
 }

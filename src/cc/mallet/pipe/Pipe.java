@@ -352,4 +352,30 @@ public abstract class Pipe implements Serializable, AlphabetCarrying
 		//System.out.println(" *** Pipe ReadResolve: new instance. instance id= " + instanceId);
 		return this;
 	}
+		
+	public void cleanPipeFromMemory(){
+		if(instanceId != null){
+			Object obj = deserializedEntries.remove(instanceId);
+//			System.out.println(" *** Pipe Removed from memory! instance id= " + instanceId);
+//			System.out.println("Pipe entries in memory: " + String.valueOf(deserializedEntries.size()));
+			if(obj != null){
+				Pipe pipe = (Pipe) obj;
+				if(pipe.dataAlphabet != null){
+					pipe.dataAlphabet.cleanAlphabetFromMemory();
+					pipe.dataAlphabet = null;
+				}
+				if(pipe.targetAlphabet != null){
+					pipe.targetAlphabet.cleanAlphabetFromMemory();
+					pipe.targetAlphabet = null;
+				}
+				pipe.instanceId = null;
+			}
+		}
+		System.gc();
+	}
+	
+	public static void cleanAllPipesFromMemory(){
+		deserializedEntries.clear();
+//		System.out.println("Pipe entries in memory: " + String.valueOf(deserializedEntries.size()));
+	}
 }

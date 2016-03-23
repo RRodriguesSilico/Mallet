@@ -58,5 +58,10 @@ public class LabelAlphabet extends Alphabet implements Serializable
 	{
 		return (Label) labels.get(labelIndex);
 	}
-		
+
+	public void cleanAlphabetFromMemory(){
+		super.cleanAlphabetFromMemory();
+		this.labels.clear();
+		this.labels = new ArrayList ();
+	}
 }
