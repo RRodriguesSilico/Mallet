@@ -2,7 +2,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>cc.mallet</groupId>
+	<groupId>org.github.rrodriguessilico.mallet</groupId>
 	<artifactId>mallet</artifactId>
 	<version>2.0.8-RC3-Unofficial</version>
 	<packaging>jar</packaging>
@@ -42,7 +42,7 @@
 		<maven.compiler.target>1.6</maven.compiler.target>
 		<encoding>UTF-8</encoding>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<github.maven.repository>file://projects/Mallet/mavenrepro</github.maven.repository>
+		<!-- <github.maven.repository>file://projects/Mallet/mavenrepro</github.maven.repository> -->
 	</properties>
 	<build>
 		<sourceDirectory>src</sourceDirectory>
@@ -94,10 +94,10 @@
 			<version>1.1</version>
 		</dependency>
 	</dependencies>
-	<distributionManagement>
+<!--<distributionManagement>
 		<repository>
 			<id>maven-repository</id>
 			<url>${github.maven.repository}</url>
 		</repository>
-	</distributionManagement>
+	</distributionManagement>  -->	
 </project>
